@@ -1,0 +1,197 @@
+  @import 'variable.less';
+  @font-face {
+    font-family: 'iconfont';  /* project id 342269 */
+    src: url('//at.alicdn.com/t/font_0g896l5vo279cnmi.eot');
+    src: url('//at.alicdn.com/t/font_0g896l5vo279cnmi.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_0g896l5vo279cnmi.woff') format('woff'),
+    url('//at.alicdn.com/t/font_0g896l5vo279cnmi.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_0g896l5vo279cnmi.svg#iconfont') format('svg');
+  }
+
+  body{
+  	background: #efeff4!important;
+  }
+
+  // 重写vux默认样式
+  .vux-header {
+    background: @color-theme;
+  }
+  .weui-cells__title {
+    color: #333!important;
+  }
+
+  #app{
+    padding-bottom: 2.2rem;
+  }
+
+  .iconfont {
+      font-family: "iconfont" !important;
+      font-size: 16px;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-stroke-width: 0px;
+      -moz-osx-font-smoothing: grayscale;
+      vertical-align: baseline;
+  }
+
+  *{
+    box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+  }
+
+  .null-data{
+    text-align: center;
+    padding: 1.5rem 0.75rem;
+    color: @fc-lighter;
+    &:before{
+      display: block;
+      content: '\e623';
+      font-family: 'iconfont';
+      font-size: 5rem;
+      color: @fc-lighter;
+      line-height: 1;
+    }
+    &.hide{
+      display: none;
+    }
+    span{
+      margin-top: 0.5rem;
+      display: block;
+    }
+  }
+
+  .header-bar ~ .content{
+    padding-top: 2.2rem;
+  }
+
+  .mint-indicator-wrapper{
+    z-index: 999;
+  }
+
+/* 下边框 */
+  .b-line{
+    position: relative;
+  }
+  .b-line::after{
+    content: '';
+    width: 100%;
+    height:1px;
+    background:@bdcolor;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    -webkit-transform: scaleY(0.5) translate3d(0,0,0);
+            transform: scaleY(0.5) translate3d(0,0,0);
+    -webkit-transform-origin:0 100%;
+    transform-origin: 0 100%;
+    z-index:5;
+  }
+
+/* 上边框 */
+  .t-line{
+    position: relative;
+  }
+  .t-line::before{
+    content: '';
+    width: 100%;
+    height:1px;
+    background:@bdcolor;
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-transform: scaleY(0.5) translate3d(0,0,0);
+            transform: scaleY(0.5) translate3d(0,0,0);
+    -webkit-transform-origin:0 0;
+    transform-origin: 0 0;
+    z-index:5;
+  }
+  .f-red{
+    color: #ff7d7d;
+  }
+
+/*左边框*/
+  .l-line{
+    position: relative;
+  }
+  .l-line::before{
+    content: '';
+    width: 1px;
+    height:100%;
+    background:@bdcolor;
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-transform: scaleX(.5) translate3d(0,0,0);
+            transform: scaleX(.5) translate3d(0,0,0);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    z-index:5;
+  }
+
+/*右边框*/
+  .r-line{
+    position: relative;
+  }
+  .r-line::after{
+    content: '';
+    width: 1px;
+    height:100%;
+    background:@bdcolor;
+    position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-transform: scaleX(.5) translate3d(0,0,0);
+            transform: scaleX(.5) translate3d(0,0,0);
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    z-index:5;
+  }
+/*flex布局*/
+  .flex-box-row{
+    display:-webkit-box;
+    display:-webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items:center;
+    align-items:center;
+  }
+  .flex-box-column{
+    display:-webkit-box;
+    display:-webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items:center;
+    align-items:center;
+    flex-flow: column;
+  }
+  /*.flex-1{
+    -webkit-flex:1;
+    -webkit-box-flex:1;
+    flex:1;
+  }
+  .flex-2{
+    -webkit-flex:2;
+    -webkit-box-flex:2;
+    flex:2;
+  }*/
+
+/*单行文本溢出显示省略号*/
+  .overflow-oneline {
+    //width：100px; 在调用的地方单独设置长度
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
+/*多行文本溢出显示省略号,也可设置单行*/
+  .overflow-moreline {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    //-webkit-line-clamp: 3; 在调用样式的地方单独设置行数
+    overflow: hidden;
+  }
+
+/*隐藏*/
+  .hide{
+    display: none;
+  }
