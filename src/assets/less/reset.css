@@ -7,9 +7,9 @@ audio:not([controls]) { display: none; height: 0; }
 [hidden], template { display: none; }
 svg:not(:root) { overflow: hidden; }
 
-a { background: transparent; text-decoration: none; -webkit-tap-highlight-color: transparent; color: #0088cc; }
-a:active { outline: 0; }
-a:active { color: #006699; }
+a { background: transparent; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+/*a:active { outline: 0; }
+a:active { color: #000; }*/
 abbr[title] { border-bottom: 1px dotted; }
 b, strong { font-weight: bold; }
 dfn { font-style: italic; }

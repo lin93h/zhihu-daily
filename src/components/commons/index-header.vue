@@ -4,11 +4,32 @@
       <i class="iconfont" slot="overwrite-left" @click="popShow">&#xe600;</i>
       <span slot="left" class="title">{{ pageTitle }}</span>
       <span slot="right">
-      <i class="iconfont bell">&#xe649;</i>
-      <i class="iconfont more">&#xe616;</i>
-    </span>
+        <i class="iconfont bell">&#xe649;</i>
+        <i class="iconfont more">&#xe616;</i>
+      </span>
     </XHeader>
-    <popup v-model="showPop" position="left" width="85%"></popup>
+    <popup v-model="showPop" position="left" width="85%">
+      <div class="themes">
+        <div class="themes-head">
+          <router-link to="/" class="user flex-box-row">
+            <div class="user-img">
+              <img :src="img.userImg" alt="default">
+            </div>
+            <div class="user-name">请登录</div>
+          </router-link>
+          <div class="operation flex-box-row">
+            <router-link to="/" class="collection operate-item">
+              <i class="iconfont">&#xe635;</i>
+              <span class="txt">我的收藏</span>
+            </router-link>
+            <router-link to="/" class="download operate-item">
+              <i class="iconfont">&#xe64a;</i>
+              <span class="txt">离线下载</span>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </popup>
   </div>
 </template>
 
@@ -23,7 +44,10 @@
     },
     data () {
       return {
-        showPop: false
+        showPop: false,
+        img: {
+          userImg: require('@/assets/images/user/default.jpg')
+        }
       }
     },
     methods: {
@@ -61,5 +85,53 @@
         top: -5px;
       }
     }
+  }
+
+  //主题弹出层样式
+  .themes {
+    width: 100%;
+    background-color: #fff;
+    & .themes-head {
+      padding: 0.5rem @colspacing;
+      padding-bottom: 0.8rem;
+      background: @color-theme;
+      color: #fff;
+      & .user {
+        font-size: @fs-middle;
+        margin-bottom: 1rem;
+        color: #fff;
+        & .user-img {
+          width: 1.5rem;
+          height: 1.5rem;
+          overflow: hidden;
+          border-radius: 50px;
+          margin-right: @colspacing;
+          & img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      & .operation {
+        //justify-content: center;
+        & .operate-item {
+          color: #fff;
+          display: inline-block;
+          //text-align: center;
+          flex-grow: 1;
+          padding-left: 0.35rem;
+          & .iconfont {
+            font-size: @fs-middle;
+            margin-right: 1rem;
+          }
+          & .txt {
+            //margin-left: 1rem;
+          }
+        }
+        & .collection {
+          padding-left: 0.35rem;
+        }
+      }
+    }/**/
   }
 </style>

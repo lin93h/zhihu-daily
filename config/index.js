@@ -29,14 +29,16 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/news/latest': {
-        target: 'https://news-at.zhihu.com/api/4/news/latest',
+        // target: 'https://news-at.zhihu.com/api/4/news/latest',
+        target: 'https://news-at.zhihu.com/api/4',
         changeOrigin: true,
         /*pathRewrite: {
           '^/new': '/'
         }*/
       },
       '/news/before': {
-        target: 'http://localhost:5000',
+        //target: 'http://localhost:5000',
+        target: 'https://news-at.zhihu.com/api/4',
         changeOrigin: true,
         pathRewrite: {
          '^/news/before': '/news/before'
