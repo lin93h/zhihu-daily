@@ -28,6 +28,13 @@
             </router-link>
           </div>
         </div>
+        <div class="themes-list">
+          <ul>
+            <li><router-link to="/" class="index-item active"><i class="iconfont">&#xe70e;</i><span class="theme">首页</span></router-link></li>
+            <li><router-link to="/" class="themes-item"><span class="theme">日常心理学</span><i class="iconfont">&#xe610;</i></router-link></li>
+            <li><router-link to="/" class="themes-item active"><span class="theme">用户推荐日报</span><i class="iconfont">&#xe610;</i></router-link></li>
+          </ul>
+        </div>
       </div>
     </popup>
   </div>
@@ -49,6 +56,9 @@
           userImg: require('@/assets/images/user/default.jpg')
         }
       }
+    },
+    created () {
+
     },
     methods: {
       popShow () {
@@ -93,7 +103,7 @@
     background-color: #fff;
     & .themes-head {
       padding: 0.5rem @colspacing;
-      padding-bottom: 0.8rem;
+      padding-bottom: @rowspacing;
       background: @color-theme;
       color: #fff;
       & .user {
@@ -132,6 +142,41 @@
           padding-left: 0.35rem;
         }
       }
-    }/**/
+    }
+    & .themes-list {
+      & a {
+        display: block;
+        color: #000;
+        font-size: @fs-middle;
+        font-weight: bold;
+        padding-left: @colspacing;
+        padding-right: 2rem;
+      }
+      & .index-item {
+        color: @color-theme;
+        & .iconfont {
+          padding: 0 1rem 0 0.3rem;
+        }
+      }
+      & .themes-item {
+        & .iconfont {
+          float: right;
+          font-size: @fs-normal;
+          color: #aaa;
+        }
+      }
+      & .active {
+        //color: @color-theme;
+        background: #EEEEEE;
+      }
+      & ul {
+
+        color: #000;
+        & li {
+          line-height: 40px;
+
+        }
+      }
+    }
   }
 </style>

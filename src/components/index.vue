@@ -64,8 +64,9 @@
       }
     },
     created () {
-      let self = this;
-      this.$ajax({
+      this.$store.getters.getInfo;//在store的getters计算属性中
+      //let self = this;
+      /*this.$ajax({
         url: '/news/latest',
         method: 'get',
         withCredentials: true
@@ -74,7 +75,7 @@
         console.log(data);
       }).catch ( function(err) {
         console.log(err)
-      })
+      })*/
     },
     methods: {
       getdata () {
