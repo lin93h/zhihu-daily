@@ -3,20 +3,20 @@
     <v-header :pageTitle="title"></v-header>
     <!--<swiper :list="swiper_list" auto style="" height="180px" dots-class="custom-bottom" dots-position="center"></swiper>-->
     <swiper auto style="" height="180px" dots-class="custom-bottom" dots-position="center">
-      <swiper-item v-for="{n, index} in 5" :key="index" style="background: url('http://pic3.zhimg.com/2d41a1d1ebf37fb699795e78db76b5c2.jpg') no-repeat;background-size: 100%;">
+      <swiper-item v-for="(item, index) in bannerStore" :key="index" style="background: url('http://pic3.zhimg.com/2d41a1d1ebf37fb699795e78db76b5c2.jpg') no-repeat;background-size: 100%;">
         <!--<img src="http://pic3.zhimg.com/2d41a1d1ebf37fb699795e78db76b5c2.jpg" alt="img" style="width: 100%;height: 100%;">-->
-        <p class="banner-title">义务爱了 完成传奇世界H5-王者归来任务 获得20金币</p>
+        <p class="banner-title">{{ item.title }}</p>
       </swiper-item>
     </swiper>
     <div class="news-all">
       <div class="news-title">今日要闻</div>
       <div class="news-latest">
-        <div class="latest-item flex-box-row" v-for="n in 3">
+        <div class="latest-item flex-box-row" v-for="item in storeList">
           <div class="item-title overflow-moreline">
-            <div>这是标题这是标题内容这是标题是标题内这是标题这是标题内容这是标题这</div>
+            {{ item.title }}
           </div>
           <div class="item-image">
-            <img src="https://pic3.zhimg.com/v2-205718fd4539071ece06c125629a81ea.jpg" alt="img"><!---->
+            <img :src="item.images[0]" alt="img"><!---->
           </div>
         </div>
       </div>
@@ -31,6 +31,7 @@
 <script type="text/ecmascript-6">
   import Vue from 'vue'
   import axios from 'axios'
+  import { mapState } from 'vuex'
   import header from '@/components/commons/index-header'
   //import Swiper from '../../static/swiper/swiper-3.4.2.jquery.min'
   //import Swiper from 'swiper'
@@ -50,6 +51,7 @@
     img: one,
     title: '送你一张图'
   }))
+
   export default {
     name: 'storise',
     components: {
@@ -60,22 +62,29 @@
     data () {
       return {
         title: '首页',
+        storeList: [],
+        bannerStore: [],
         swiper_list: demoList
       }
     },
-    created () {
-      this.$store.getters.getInfo;//在store的getters计算属性中
-      //let self = this;
-      /*this.$ajax({
+    beforeCreate () {
+      let self = this;
+      this.$ajax({
         url: '/news/latest',
         method: 'get',
         withCredentials: true
-      }).then(function (data) {
+      }).then(function (res) {
+        self.storeList = res.data.stories;
+        for (let i=0; i<5; i++) {
+          self.bannerStore.push(self.storeList[i]);
+        }
+        //console.log(self.bannerStore);
         //self.swiper_list.push(data.data.stories[0]['images'][0])
-        console.log(data);
+        //console.log(self.storeList);
       }).catch ( function(err) {
         console.log(err)
-      })*/
+      })/**/
+      //console.log('end')
     },
     methods: {
       getdata () {
@@ -135,8 +144,9 @@
         background-color: #fff;
         align-items: flex-start;
         border-radius: 5px;
+        justify-content: space-between;
         & .item-title {
-          font-size: 0.9rem;
+          font-size: 0.8rem;
           color: #000;
           -webkit-line-clamp: 3;
           margin-right: 0.7rem;

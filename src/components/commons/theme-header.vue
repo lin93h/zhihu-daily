@@ -3,10 +3,7 @@
     <XHeader>
       <i class="iconfont" slot="overwrite-left" @click="popShow">&#xe600;</i>
       <span slot="left" class="title">{{ pageTitle }}</span>
-      <span slot="right">
-        <i class="iconfont bell">&#xe649;</i>
-        <i class="iconfont more">&#xe616;</i>
-      </span>
+      <i slot="right" class="iconfont collect">&#xe8a1;</i>
     </XHeader>
     <popup v-model="showPop" position="left" width="85%">
       <div class="themes">
@@ -98,16 +95,11 @@
       }
     }
     & .vux-header-right {
-      & .bell {
+      & .collect {
         color: #fff;
-        font-size: 1.2rem;
-        margin-right: 1rem;
-      }
-      & .more {
-        color: #fff;
-        font-size: 0.8rem;
+        font-size: 1rem;
         position: relative;
-        top: -5px;
+        top: -2px;
       }
     }
   }
