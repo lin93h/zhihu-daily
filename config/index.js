@@ -28,6 +28,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+      //获取当天最新消息
       '/news/latest': {
         // target: 'https://news-at.zhihu.com/api/4/news/latest',
         target: 'https://news-at.zhihu.com/api/4',
@@ -36,6 +37,7 @@ module.exports = {
           '^/new': '/'
         }*/
       },
+      //获取历史消息，时间要比想要获取的日期+1，如：20170102获取的是1月1日的
       '/news/before': {
         //target: 'http://localhost:5000',
         target: 'https://news-at.zhihu.com/api/4',
@@ -44,17 +46,28 @@ module.exports = {
          '^/news/before': '/news/before'
          }/**/
       },
+      //获取主题列表
       '/themes': {
         //target: 'http://localhost:5000',
         target: 'https://news-at.zhihu.com/api/4',
         changeOrigin: true
       },
+      //获取特定主题消息，加上/id参数
       '/theme': {
         //target: 'http://localhost:5000',
         target: 'https://news-at.zhihu.com/api/4',
         changeOrigin: true,
         pathRewrite: {
           '^/theme': '/theme'
+        }/**/
+      },
+      //获取特定消息内容，加上/id参数
+      '/news': {
+        //target: 'http://localhost:5000',
+        target: 'https://news-at.zhihu.com/api/4',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/news': '/news'
         }/**/
       }
     },

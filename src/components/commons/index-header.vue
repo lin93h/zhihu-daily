@@ -92,20 +92,20 @@
         margin-left: 1rem;
         color: #fff;
       }
-      & .iconfont {
+      /*& .iconfont {
         font-size: 0.8rem;
         color: #fff;
-      }
+      }*/
     }
     & .vux-header-right {
       & .bell {
-        color: #fff;
+        //color: #fff;
         font-size: 1.2rem;
         margin-right: 1rem;
       }
       & .more {
-        color: #fff;
-        font-size: 0.8rem;
+        //color: #fff;
+        //font-size: 0.8rem;
         position: relative;
         top: -5px;
       }
