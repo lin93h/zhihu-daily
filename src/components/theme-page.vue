@@ -1,6 +1,6 @@
 <template>
   <div class="theme-page">
-    <v-header :pageTitle="theme.name"></v-header>
+    <v-header :pageTitle="theme.name" @regetdata="themeID"></v-header>
     <swiper auto style="" height="180px" :show-dots=false>
       <swiper-item :style="'background: url('+theme.image+') no-repeat;background-size: 100%;'">
         <!--<img src="http://pic3.zhimg.com/2d41a1d1ebf37fb699795e78db76b5c2.jpg" alt="img" style="width: 100%;height: 100%;">-->
@@ -35,13 +35,14 @@
           </div>
         </div>
       </XHeader>
-      <link rel="stylesheet" :href="store.css">
+      <link rel="stylesheet" :href="store.css"><!--可能会覆盖原先有样式-->
       <div v-html="store.body"></div>
     </popup>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import Vue from 'vue'
   import axios from 'axios'
   import header from '@/components/commons/theme-header'
   import { Swiper, SwiperItem, Popup, XHeader } from 'vux'
@@ -54,9 +55,10 @@
         store: {} //特定消息的详细信息
       }
     },
-    mounted () {
+    created () {
       let id = this.$route.params.id;
-      let self = this;
+      this.themeID(id);
+      /*let self = this;
       this.$ajax({
         url: '/theme/'+ id,
         method: 'get',
@@ -64,10 +66,10 @@
       }).then(function (res) {
         self.theme = res.data;
         console.log(self.theme);
+        console.log('created');
       }).catch ( function(err) {
         console.log(err)
-      })
-      console.log(this.$route.params.id);
+      })*/
     },
     components: {
       'v-header': header,
@@ -88,11 +90,27 @@
           url: '/news/'+ arg
         }).then(function (res) {
           self.store = res.data;
-          console.log(self.store);
+          //console.log(self.store);
         }).catch(function (err) {
           console.log(err);
         })
         //console.log(arg);
+      },
+      themeID (arg) {
+        let self = this;
+        this.$ajax({
+          url: '/theme/'+ arg,
+          method: 'get',
+          withCredentials: true
+        }).then(function (res) {
+          self.theme = res.data;
+          //Vue.set(Vue.theme, res.data);
+          //console.log(self.theme);
+          //console.log('watch');
+        }).catch ( function(err) {
+          console.log(err)
+        });
+        //console.log(arg + 'themeId');
       }
     }
   }

@@ -11,18 +11,18 @@
     <popup v-model="showPop" position="left" width="85%">
       <div class="themes">
         <div class="themes-head">
-          <router-link to="/" class="user flex-box-row">
+          <router-link to="/user" class="user flex-box-row">
             <div class="user-img">
               <img :src="img.userImg" alt="default">
             </div>
             <div class="user-name">请登录</div>
           </router-link>
           <div class="operation flex-box-row">
-            <router-link to="/" class="collection operate-item">
+            <router-link to="/collect" class="collection operate-item">
               <i class="iconfont">&#xe635;</i>
               <span class="txt">我的收藏</span>
             </router-link>
-            <router-link to="/" class="download operate-item">
+            <router-link to="download" class="download operate-item">
               <i class="iconfont">&#xe64a;</i>
               <span class="txt">离线下载</span>
             </router-link>
@@ -185,7 +185,7 @@
         background: #EEEEEE;
       }
       & ul {
-
+        padding-left: 0;
         color: #000;
         & li {
           line-height: 40px;

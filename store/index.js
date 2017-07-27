@@ -13,7 +13,8 @@ const state = {
     themes: '/themes'
   },
   themesList: {},
-  storeList: {}
+  storeList: {},
+  themeId:''
 }
 
 const getters = {

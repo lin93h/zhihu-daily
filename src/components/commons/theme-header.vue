@@ -30,7 +30,7 @@
             <li>
               <router-link to="/" class="index-item active"><i class="iconfont">&#xe70e;</i><span class="theme">首页</span></router-link>
             </li>
-            <li v-for="item in themesList">
+            <li v-for="item in themesList" @click="fetchId">
               <router-link :to="{path: '/theme/'+ item.id}" class="themes-item"><span class="theme">{{ item.name }}</span><i class="iconfont">&#xe610;</i></router-link>
             </li>
           </ul>
@@ -75,6 +75,13 @@
     methods: {
       popShow () {
         this.showPop = true;
+      },
+      fetchId () {
+        this.showPop = false;
+        let id = this.$route.params.id;
+        this.$store.state.themeId = id;
+        this.$emit('regetdata', id);
+        //console.log(id + '这在header里');
       }
     }
   }
@@ -177,7 +184,7 @@
         background: #EEEEEE;
       }
       & ul {
-
+        padding-left: 0px;//必须，覆盖theme-page中引入的样式，防止当前样式被引入样式表重写
         color: #000;
         & li {
           line-height: 40px;
