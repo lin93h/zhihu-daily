@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <transition>
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  
 }
 </script>
 
@@ -14,7 +17,5 @@ export default {
 @import "assets/less/reset.css";
 @import "assets/less/index.less";
 
-#app {
-  //background-color: @color-theme;
-}
+
 </style>

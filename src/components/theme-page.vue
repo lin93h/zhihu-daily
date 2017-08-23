@@ -10,11 +10,11 @@
     <div class="theme-editors flex-box-row">
       <div class="txt">主编</div>
       <div class="editors">
-        <img class="avatar" v-for="item in theme.editors" :src="item.avatar" alt="item.name">
+        <img class="avatar" v-for="item in theme.editors" :src="item.avatar" :key="item.id" alt="item.name">
       </div>
     </div>
     <div class="stories">
-      <div class="store flex-box-row" v-for="item in theme.stories" @click="showPop(item.id)">
+      <div class="store flex-box-row" v-for="item in theme.stories" :key="item.id" @click="showPop(item.id)">
         <div class="title">{{ item.title }}</div>
         <img :src="item.images" :alt="item.title" v-if="item.images">
       </div>
@@ -118,6 +118,9 @@
 
 <style lang="less" scoped>
   @import "../assets/less/index.less";
+  .theme-header ~ .vux-slider {
+    padding-top: 46px;
+  }
   .theme-page {
     & .banner-title {
       position: absolute;

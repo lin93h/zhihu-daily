@@ -2,7 +2,7 @@
   <div class="storise">
     <v-header :pageTitle="title"></v-header>
     <!--<swiper :list="swiper_list" auto style="" height="180px" dots-class="custom-bottom" dots-position="center"></swiper>-->
-    <swiper auto style="" height="180px" dots-class="custom-bottom" dots-position="center">
+    <swiper auto height="180px" dots-class="custom-bottom" dots-position="center">
       <swiper-item v-for="(item, index) in bannerStore" :key="index" style="background: url('http://pic3.zhimg.com/2d41a1d1ebf37fb699795e78db76b5c2.jpg') no-repeat;background-size: 100%;">
         <!--<img src="http://pic3.zhimg.com/2d41a1d1ebf37fb699795e78db76b5c2.jpg" alt="img" style="width: 100%;height: 100%;">-->
         <p class="banner-title">{{ item.title }}</p>
@@ -11,7 +11,7 @@
     <div class="news-all">
       <div class="news-title">今日要闻</div>
       <div class="news-latest">
-        <div class="latest-item flex-box-row" v-for="item in storeList" @click="fetchStore (item.id)">
+        <div class="latest-item flex-box-row" v-for="item in storeList" @click="fetchStore (item.id)" :key="item.id">
           <div class="item-title overflow-moreline">
             {{ item.title }}
           </div>
@@ -160,7 +160,9 @@
 <style lang="less" scoped>
   @import "../assets/less/index.less";
   //@import "../../static/swiper/swiper-3.4.2.min.css";
-
+  .index-header ~ .vux-slider {
+    padding-top: 46px;
+  }
   .storise {
     & .banner-title {
       position: absolute;

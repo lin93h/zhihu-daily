@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="theme-header">
     <XHeader>
       <i class="iconfont" slot="overwrite-left" @click="popShow">&#xe600;</i>
       <span slot="left" class="title">{{ pageTitle }}</span>
@@ -30,7 +30,7 @@
             <li>
               <router-link to="/" class="index-item active"><i class="iconfont">&#xe70e;</i><span class="theme">首页</span></router-link>
             </li>
-            <li v-for="item in themesList" @click="fetchId">
+            <li v-for="item in themesList" @click="fetchId" :key="item.id">
               <router-link :to="{path: '/theme/'+ item.id}" class="themes-item"><span class="theme">{{ item.name }}</span><i class="iconfont">&#xe610;</i></router-link>
             </li>
           </ul>
@@ -90,6 +90,10 @@
 <style lang="less" scoped>
   @import "../../assets/less/index.less";
   .vux-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
     & .vux-header-left {
       & .title {
         font-size: 0.8rem;
