@@ -14,30 +14,13 @@
       </div>
     </div>
     <div class="stories">
-      <div class="store flex-box-row" v-for="item in theme.stories" :key="item.id" @click="showPop(item.id)">
-        <div class="title">{{ item.title }}</div>
-        <img :src="item.images" :alt="item.title" v-if="item.images">
-      </div>
-    </div>
-    <popup v-model="popValue" position="right" width="100%">
-      <XHeader>
-        <i class="iconfont" slot="overwrite-left" @click="closePop">&#xe606;</i>
-        <div slot="right" class="icon-group flex-box-row">
-          <i class="iconfont share">&#xe64f;</i>
-          <i class="iconfont collect">&#xe635;</i>
-          <div class="comments">
-            <i class="iconfont">&#xe704;</i>
-            <span class="num">41</span>
-          </div>
-          <div class="Likes">
-            <i class="iconfont">&#xe8fd;</i>
-            <span class="num">1.2k</span>
-          </div>
+      <router-link v-for="item in theme.stories" :key="item.id" :to="{path: '/news/' + item.id}">
+        <div class="store flex-box-row">
+          <div class="title">{{ item.title }}</div>
+          <img :src="item.images" :alt="item.title" v-if="item.images">
         </div>
-      </XHeader>
-      <link rel="stylesheet" :href="store.css"><!--可能会覆盖原先有样式-->
-      <div v-html="store.body"></div>
-    </popup>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -45,7 +28,7 @@
   import Vue from 'vue'
   import axios from 'axios'
   import header from '@/components/commons/theme-header'
-  import { Swiper, SwiperItem, Popup, XHeader } from 'vux'
+  import { Swiper, SwiperItem, XHeader } from 'vux'
   export default {
     name: 'theme-page',
     data () {
@@ -58,44 +41,14 @@
     created () {
       let id = this.$route.params.id;
       this.themeID(id);
-      /*let self = this;
-      this.$ajax({
-        url: '/theme/'+ id,
-        method: 'get',
-        withCredentials: true
-      }).then(function (res) {
-        self.theme = res.data;
-        console.log(self.theme);
-        console.log('created');
-      }).catch ( function(err) {
-        console.log(err)
-      })*/
     },
     components: {
       'v-header': header,
       Swiper,
       SwiperItem,
-      Popup,
       XHeader
     },
     methods: {
-      closePop () {
-        this.popValue = false;
-      },
-      showPop (arg) {
-        this.popValue = true;
-        let self = this;
-        axios({
-          method: 'get',
-          url: '/news/'+ arg
-        }).then(function (res) {
-          self.store = res.data;
-          //console.log(self.store);
-        }).catch(function (err) {
-          console.log(err);
-        })
-        //console.log(arg);
-      },
       themeID (arg) {
         let self = this;
         this.$ajax({
@@ -160,34 +113,6 @@
         //margin-left: 0.5rem;
         width: 4rem;
         height: 3.5rem;
-      }
-    }
-    & .icon-group {
-      & .iconfont {
-        margin-left: @colspacing;
-        line-height: 22px;
-      }
-      & .num {
-        color: #fff;
-        display: inline-block;
-        vertical-align: top;
-        line-height: 22px;
-      }
-      & .collect {
-        margin: 0 0.6rem 0 1.2rem;
-      }
-      & .comments {
-        & .iconfont {
-          display: inline-block;
-          font-size: 0.9rem;
-          line-height: 22px;
-        }
-      }
-      & .Likes {
-        & .iconfont {
-          display: inline-block;
-          font-size: 0.9rem;
-        }
       }
     }
   }
